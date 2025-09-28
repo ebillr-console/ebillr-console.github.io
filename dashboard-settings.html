@@ -59,7 +59,6 @@
             box-sizing: border-box;
             font-family: 'Inter', sans-serif;
             transition: none !important;
-            /* removed all transitions globally */
         }
 
         html,
@@ -73,7 +72,6 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-primary);
-            scroll-behavior: smooth;
         }
 
         ::selection {
@@ -279,6 +277,9 @@
             transition: color 0.3s, background-color 0.3s, border-color 0.3s;
         }
 
+        /* --- Keep the rest of original CSS fully intact --- */
+
+        /* Form Grid */
         .form-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -357,6 +358,7 @@
             filter: invert(1);
         }
 
+        /* User Profile Section */
         .user-profile-section {
             display: flex;
             align-items: center;
@@ -491,6 +493,7 @@
             border-color: var(--text-primary);
         }
 
+        /* Mobile Header & Overlay */
         .mobile-header {
             display: none;
             background: var(--card-bg);
@@ -553,10 +556,6 @@
                 display: block;
             }
 
-            .mobile-overlay.mobile-open {
-                display: block;
-            }
-
             .mobile-logo {
                 display: none;
             }
@@ -567,6 +566,10 @@
 
             .theme-button {
                 min-width: 100%;
+            }
+
+            .mobile-overlay.mobile-open {
+                display: block;
             }
         }
 
@@ -838,7 +841,7 @@
     <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js"></script>
 
     <!-- Load our consolidated JavaScript file -->
- <script src="assets/js/app.js"></script>
+    <script src="app.js"></script>
     <script>
         window.history.scrollRestoration = "manual";
         window.scrollTo(0, 0);
