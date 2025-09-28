@@ -29,7 +29,7 @@ class DataManager {
         this.defaultSettings = {
             country: 'in',
             currency: 'INR',
-            theme: 'light',
+            theme: 'auto', // Changed default to 'auto'
             timeRange: '7d',
             axisRange: '1000',
             dateFormat: 'MM/DD/YYYY',
@@ -115,36 +115,72 @@ class MobileMenu {
     }
 }
 
-// Theme management
+// Theme management - UPDATED FOR 3-BUTTON SYSTEM
 class ThemeManager {
     constructor() {
-        this.modalThemeToggle = document.getElementById('modalThemeToggle');
-        this.modalThemeIcon = document.getElementById('modalThemeIcon');
-        this.modalThemeText = document.getElementById('modalThemeText');
+        this.lightThemeButton = document.getElementById('lightThemeButton');
+        this.darkThemeButton = document.getElementById('darkThemeButton');
+        this.autoThemeButton = document.getElementById('autoThemeButton');
 
         this.init();
     }
 
     init() {
-        // Apply saved theme
-        const savedTheme = dataManager.getSetting('theme') || this.detectSystemTheme();
-        document.documentElement.setAttribute('data-theme', savedTheme);
-        this.updateThemeIcon(savedTheme);
+        // Apply saved theme or default to 'auto'
+        const savedTheme = dataManager.getSetting('theme') || 'auto';
+        this.applyTheme(savedTheme);
+        this.updateActiveButton(savedTheme);
 
-        // Event listeners
-        if (this.modalThemeToggle) {
-            this.modalThemeToggle.addEventListener('click', () => this.toggleTheme());
+        // Event listeners for theme buttons
+        if (this.lightThemeButton) {
+            this.lightThemeButton.addEventListener('click', () => this.setTheme('light'));
+        }
+        if (this.darkThemeButton) {
+            this.darkThemeButton.addEventListener('click', () => this.setTheme('dark'));
+        }
+        if (this.autoThemeButton) {
+            this.autoThemeButton.addEventListener('click', () => this.setTheme('auto'));
         }
 
-        // Listen for system theme changes
+        // Listen for system theme changes (only applies when in 'auto' mode)
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-            if (!dataManager.getSetting('theme')) {
-                const newTheme = e.matches ? 'dark' : 'light';
-                document.documentElement.setAttribute('data-theme', newTheme);
-                this.updateThemeIcon(newTheme);
-                dataManager.updateSetting('theme', newTheme);
+            if (dataManager.getSetting('theme') === 'auto') {
+                const systemTheme = e.matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', systemTheme);
             }
         });
+
+        // For backward compatibility with old single-button system
+        this.setupLegacyThemeToggle();
+    }
+
+    setupLegacyThemeToggle() {
+        const modalThemeToggle = document.getElementById('modalThemeToggle');
+        if (modalThemeToggle) {
+            modalThemeToggle.addEventListener('click', () => {
+                const currentTheme = dataManager.getSetting('theme');
+                if (currentTheme === 'light' || currentTheme === 'auto') {
+                    this.setTheme('dark');
+                } else {
+                    this.setTheme('light');
+                }
+            });
+        }
+    }
+
+    setTheme(theme) {
+        dataManager.updateSetting('theme', theme);
+        this.applyTheme(theme);
+        this.updateActiveButton(theme);
+    }
+
+    applyTheme(theme) {
+        if (theme === 'auto') {
+            const systemTheme = this.detectSystemTheme();
+            document.documentElement.setAttribute('data-theme', systemTheme);
+        } else {
+            document.documentElement.setAttribute('data-theme', theme);
+        }
     }
 
     detectSystemTheme() {
@@ -154,24 +190,39 @@ class ThemeManager {
         return 'light';
     }
 
-    toggleTheme() {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    updateActiveButton(theme) {
+        // Remove active class from all buttons
+        if (this.lightThemeButton) this.lightThemeButton.classList.remove('active');
+        if (this.darkThemeButton) this.darkThemeButton.classList.remove('active');
+        if (this.autoThemeButton) this.autoThemeButton.classList.remove('active');
 
-        document.documentElement.setAttribute('data-theme', newTheme);
-        dataManager.updateSetting('theme', newTheme);
-        this.updateThemeIcon(newTheme);
+        // Add active class to selected button
+        if (theme === 'light' && this.lightThemeButton) {
+            this.lightThemeButton.classList.add('active');
+        } else if (theme === 'dark' && this.darkThemeButton) {
+            this.darkThemeButton.classList.add('active');
+        } else if (this.autoThemeButton) {
+            this.autoThemeButton.classList.add('active');
+        }
+
+        // Update legacy theme toggle if it exists
+        this.updateLegacyThemeToggle(theme);
     }
 
-    updateThemeIcon(theme) {
-        if (theme === 'dark') {
-            this.modalThemeIcon.setAttribute('data-lucide', 'sun');
-            this.modalThemeText.textContent = 'Switch To Light Theme';
-        } else {
-            this.modalThemeIcon.setAttribute('data-lucide', 'moon');
-            this.modalThemeText.textContent = 'Switch To Dark Theme';
+    updateLegacyThemeToggle(theme) {
+        const modalThemeIcon = document.getElementById('modalThemeIcon');
+        const modalThemeText = document.getElementById('modalThemeText');
+
+        if (modalThemeIcon && modalThemeText) {
+            if (theme === 'dark') {
+                modalThemeIcon.setAttribute('data-lucide', 'sun');
+                modalThemeText.textContent = 'Switch To Light Theme';
+            } else {
+                modalThemeIcon.setAttribute('data-lucide', 'moon');
+                modalThemeText.textContent = 'Switch To Dark Theme';
+            }
+            lucide.createIcons();
         }
-        lucide.createIcons();
     }
 }
 
@@ -279,15 +330,14 @@ class SettingsManager {
         if (fieldWeight) fieldWeight.checked = settings.invoiceFields.weight;
         if (fieldQuantity) fieldQuantity.checked = settings.invoiceFields.quantity;
 
-        // Load theme
-        document.documentElement.setAttribute('data-theme', settings.theme);
+        // Theme is now handled by ThemeManager class
     }
 
     saveAllSettings() {
         const settings = {
             country: this.countrySelect ? this.countrySelect.value : 'in',
             currency: this.currencySelect ? this.currencySelect.value : 'INR',
-            theme: document.documentElement.getAttribute('data-theme'),
+            theme: dataManager.getSetting('theme'), // Get from dataManager
             timeRange: document.getElementById('defaultTimeRange') ? document.getElementById('defaultTimeRange').value : '7d',
             axisRange: document.getElementById('defaultAxisRange') ? document.getElementById('defaultAxisRange').value : '1000',
             dateFormat: document.getElementById('dateFormatSelect') ? document.getElementById('dateFormatSelect').value : 'MM/DD/YYYY',
