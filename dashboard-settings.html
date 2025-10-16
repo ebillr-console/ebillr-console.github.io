@@ -8,596 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --sidebar-bg: #ffffff;
-            --card-bg: #ffffff;
-            --bg-color: #fafafa;
-            --text-primary: #171717;
-            --text-secondary: #737373;
-            --border-color: #e5e5e5;
-            --hover-bg: #f5f5f5;
-            --checkbox-bg: #ffffff;
-            --checkbox-border: #d4d4d4;
-            --checkbox-checked-bg: #000000;
-            --checkbox-checked-border: #000000;
-        }
-
-        [data-theme="dark"] {
-            --sidebar-bg: #0a0a0a;
-            --card-bg: #000000;
-            --bg-color: #0a0a0a;
-            --text-primary: #fafafa;
-            --text-secondary: #a3a3a3;
-            --border-color: #262626;
-            --hover-bg: #262626;
-            --checkbox-bg: #262626;
-            --checkbox-border: #404040;
-            --checkbox-checked-bg: #ffffff;
-            --checkbox-checked-border: #ffffff;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            :root:not([data-theme="light"]) {
-                --sidebar-bg: #0a0a0a;
-                --card-bg: #000000;
-                --bg-color: #0a0a0a;
-                --text-primary: #fafafa;
-                --text-secondary: #a3a3a3;
-                --border-color: #262626;
-                --hover-bg: #262626;
-                --checkbox-bg: #262626;
-                --checkbox-border: #404040;
-                --checkbox-checked-bg: #ffffff;
-                --checkbox-checked-border: #ffffff;
-            }
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-            transition: none !important;
-        }
-
-        html,
-        body {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-        }
-
-        ::selection {
-            background-color: var(--text-primary);
-            color: var(--bg-color);
-        }
-
-        .sidebar {
-            background: var(--sidebar-bg);
-            color: var(--text-primary);
-            width: 260px;
-            height: 100vh;
-            position: fixed;
-            left: 0;
-            top: 0;
-            padding: 1.5rem 1rem;
-            z-index: 100;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
-            overflow-y: auto;
-            border-right: 1px solid var(--border-color);
-            transition: none;
-        }
-
-        .main-content {
-            margin-left: 260px;
-            min-height: 100vh;
-            padding: 2rem;
-            background-color: var(--bg-color);
-            transition: none;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 8px;
-            padding: 1.5rem;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-            margin-bottom: 2rem;
-        }
-
-        .menu-item {
-            display: flex;
-            align-items: center;
-            padding: 0.75rem 1rem;
-            border-radius: 6px;
-            margin-bottom: 0.5rem;
-            cursor: pointer;
-            color: var(--text-primary);
-            transition: none;
-        }
-
-        .menu-item.active,
-        .menu-item:hover {
-            background: var(--hover-bg);
-        }
-
-        .menu-icon {
-            width: 20px;
-            height: 20px;
-            margin-right: 0.75rem;
-            color: var(--text-primary);
-        }
-
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            font-weight: 500;
-            cursor: pointer;
-            border: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-            transition: none;
-            justify-content: center;
-            min-width: 120px;
-        }
-
-        .btn-primary {
-            background: var(--text-primary);
-            color: var(--bg-color);
-        }
-
-        .btn-primary:hover {
-            opacity: 0.9;
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-        }
-
-        .btn-outline:hover {
-            background: var(--hover-bg);
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 0.75rem;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-            background: var(--card-bg);
-            color: var(--text-primary);
-            font-size: 0.875rem;
-            transition: none;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--text-primary);
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--text-primary);
-            font-size: 0.875rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .theme-toggle {
-            background: var(--card-bg);
-            border-radius: 6px;
-            width: auto;
-            height: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-            padding: 0.5rem 1rem;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-            transition: none;
-        }
-
-        .settings-section {
-            margin-bottom: 3.5rem;
-        }
-
-        .settings-section-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            padding-left: 0.75rem;
-        }
-
-        .settings-section-subtitle {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            padding-left: 0.75rem;
-        }
-
-        .select-container {
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
-
-        .select-container::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            right: 12px;
-            transform: translateY(-50%);
-            width: 0;
-            height: 0;
-            border-left: 5px solid transparent;
-            border-right: 5px solid transparent;
-            border-top: 5px solid var(--text-primary);
-            pointer-events: none;
-        }
-
-        .styled-select {
-            appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            width: 100%;
-            padding: 0.75rem;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-            background: var(--card-bg);
-            color: var(--text-primary);
-            font-size: 0.875rem;
-            cursor: pointer;
-            transition: none;
-        }
-
-        .styled-select:focus {
-            outline: none;
-            border-color: var(--text-primary);
-        }
-
-        /* Only smooth transition for comma-style field */
-        #defaultAxisRange {
-            transition: color 0.3s, background-color 0.3s, border-color 0.3s;
-        }
-
-        /* --- Keep the rest of original CSS fully intact --- */
-
-        /* Form Grid */
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-        }
-
-        @media (min-width: 768px) {
-            .form-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .invoice-list {
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            overflow: hidden;
-            font-size: 0.875rem;
-        }
-
-        .field-option {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0.5rem 1rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .field-option:last-child {
-            border-bottom: none;
-        }
-
-        .field-label {
-            font-weight: 500;
-            color: var(--text-primary);
-        }
-
-        .custom-checkbox {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-        }
-
-        .field-checkbox {
-            opacity: 0;
-            position: absolute;
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
-            margin: 0;
-        }
-
-        .checkmark {
-            width: 24px;
-            height: 24px;
-            background-image: url('https://www.svgrepo.com/show/309415/checkbox-unchecked.svg');
-            background-size: 24px 24px;
-            background-repeat: no-repeat;
-            background-position: center;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            vertical-align: middle;
-        }
-
-        .field-checkbox:checked+.checkmark {
-            background-image: url('https://www.svgrepo.com/show/310638/checkbox-checked.svg');
-        }
-
-        [data-theme="dark"] .checkmark {
-            background-image: url('https://www.svgrepo.com/show/309415/checkbox-unchecked.svg');
-            filter: invert(1);
-        }
-
-        [data-theme="dark"] .field-checkbox:checked+.checkmark {
-            background-image: url('https://www.svgrepo.com/show/310638/checkbox-checked.svg');
-            filter: invert(1);
-        }
-
-        /* User Profile Section */
-        .user-profile-section {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .user-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: var(--hover-bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
-            border: 1px solid var(--border-color);
-        }
-
-        .user-info {
-            flex-grow: 1;
-        }
-
-        .user-name {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .user-email {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-        }
-
-        .profile-actions {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .action-buttons {
-            display: flex;
-            justify-content: flex-end;
-            gap: 1rem;
-            margin-top: 2rem;
-            padding: 0;
-        }
-
-        .action-button {
-            min-width: 140px;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            font-weight: 500;
-            cursor: pointer;
-            border: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-            transition: none;
-        }
-
-        .action-button-primary {
-            background: var(--text-primary);
-            color: var(--bg-color);
-        }
-
-        .action-button-primary:hover {
-            opacity: 0.9;
-        }
-
-        .action-button-outline {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-        }
-
-        .action-button-outline:hover {
-            background: var(--hover-bg);
-        }
-
-        .settings-header {
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .settings-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            padding-left: 0.75rem;
-        }
-
-        .settings-subtitle {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            font-weight: 400;
-            padding-left: 0.75rem;
-        }
-
-        .theme-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            padding-left: 0.75rem;
-        }
-
-        .theme-button {
-            flex: 1;
-            min-width: 140px;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-            padding: 0.75rem 1rem;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            cursor: pointer;
-            transition: none;
-            font-size: 0.875rem;
-        }
-
-        .theme-button:hover {
-            background: var(--hover-bg);
-        }
-
-        .theme-button.active {
-            background: var(--text-primary);
-            color: var(--bg-color);
-            border-color: var(--text-primary);
-        }
-
-        /* Mobile Header & Overlay */
-        .mobile-header {
-            display: none;
-            background: var(--card-bg);
-            padding: 1rem;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 99;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: none;
-        }
-
-        .mobile-menu-btn:hover {
-            color: var(--text-secondary);
-        }
-
-        .mobile-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 99;
-            animation: fadeIn 0.3s ease-out;
-        }
-
-        @media (max-width: 1024px) {
-            .sidebar {
-                transform: translateX(-100%);
-                width: 280px;
-            }
-
-            .sidebar.mobile-open {
-                transform: translateX(0);
-            }
-
-            .main-content {
-                margin-left: 0;
-                width: 100%;
-                padding: 1rem;
-            }
-
-            .mobile-header {
-                display: flex;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .mobile-logo {
-                display: none;
-            }
-
-            .theme-buttons {
-                flex-direction: column;
-            }
-
-            .theme-button {
-                min-width: 100%;
-            }
-
-            .mobile-overlay.mobile-open {
-                display: block;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .main-content {
-                padding: 1rem;
-            }
-
-            .settings-section-title {
-                font-size: 1.25rem;
-            }
-
-            .profile-actions {
-                flex-direction: column;
-            }
-
-            .action-buttons {
-                flex-direction: column;
-            }
-
-            .action-button {
-                width: 100%;
-            }
-        }
-    </style>
-
+    <link rel="stylesheet" href="styles/dashboard-settings.css">
 </head>
-
 
 <body>
     <!-- Mobile Header -->
@@ -664,11 +76,15 @@
             <div class="theme-buttons">
                 <button class="theme-button" id="lightThemeButton">
                     <i data-lucide="sun"></i>
-                    <span>Switch To Light Theme</span>
+                    <span>Light Theme</span>
                 </button>
                 <button class="theme-button" id="darkThemeButton">
                     <i data-lucide="moon"></i>
-                    <span>Switch To Dark Theme</span>
+                    <span>Dark Theme</span>
+                </button>
+                <button class="theme-button" id="autoThemeButton">
+                    <i data-lucide="monitor"></i>
+                    <span>System Theme</span>
                 </button>
             </div>
         </div>
@@ -678,7 +94,6 @@
             <h2 class="settings-section-title">Region & Localization</h2>
             <p class="settings-section-subtitle">Switch to your home country in order to apply auto preset data formats.
             </p>
-            <p class="settings-section-subtitle">By Default The Theme Adapts To System.</p>
             <div class="card">
                 <div class="form-grid">
                     <div class="form-group">
@@ -703,6 +118,7 @@
                         <label class="form-label">Date Format</label>
                         <div class="select-container">
                             <select class="styled-select" id="dateFormatSelect">
+                                <option value="DD-MM-YYYY">DD-MM-YYYY</option>
                                 <option value="MM/DD/YYYY">MM/DD/YYYY</option>
                                 <option value="DD/MM/YYYY">DD/MM/YYYY</option>
                                 <option value="YYYY-MM-DD">YYYY-MM-DD</option>
@@ -771,7 +187,7 @@
                 <div class="field-option">
                     <span class="field-label">Name</span>
                     <label class="custom-checkbox">
-                        <input type="checkbox" class="field-checkbox" checked>
+                        <input type="checkbox" class="field-checkbox" id="fieldName" checked>
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -779,7 +195,7 @@
                 <div class="field-option">
                     <span class="field-label">Price</span>
                     <label class="custom-checkbox">
-                        <input type="checkbox" class="field-checkbox" checked>
+                        <input type="checkbox" class="field-checkbox" id="fieldPrice" checked>
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -787,7 +203,7 @@
                 <div class="field-option">
                     <span class="field-label">Weight</span>
                     <label class="custom-checkbox">
-                        <input type="checkbox" class="field-checkbox">
+                        <input type="checkbox" class="field-checkbox" id="fieldWeight">
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -795,13 +211,12 @@
                 <div class="field-option">
                     <span class="field-label">Quantity</span>
                     <label class="custom-checkbox">
-                        <input type="checkbox" class="field-checkbox">
+                        <input type="checkbox" class="field-checkbox" id="fieldQuantity">
                         <span class="checkmark"></span>
                     </label>
                 </div>
             </div>
         </div>
-
 
         <!-- User Profile Section -->
         <div class="settings-section">
@@ -809,23 +224,45 @@
             <p class="settings-section-subtitle">More controls</p>
 
             <div class="card">
-                <div class="user-profile-section">
-                    <div class="user-avatar">
-                        <i data-lucide="user"></i>
+                <!-- Skeleton Loading State -->
+                <div class="skeleton-container" id="skeletonContainer">
+                    <div class="user-profile-section">
+                        <div class="skeleton skeleton-avatar"></div>
+                        <div class="user-info">
+                            <div class="skeleton skeleton-name"></div>
+                            <div class="skeleton skeleton-email"></div>
+                        </div>
                     </div>
-                    <div class="user-info">
-                        <div class="user-name">John Doe</div>
-                        <div class="user-email">john.doe@example.com</div>
+                    <div class="profile-actions">
+                        <button class="btn btn-outline">
+                            <i data-lucide="edit"></i> Edit Profile
+                        </button>
+                        <button class="btn btn-outline" id="logoutBtn">
+                            <i data-lucide="log-out"></i> Log Out
+                        </button>
                     </div>
                 </div>
 
-                <div class="profile-actions">
-                    <button class="btn btn-outline">
-                        <i data-lucide="edit"></i> Edit Profile
-                    </button>
-                    <button class="btn btn-outline" id="logoutBtn">
-                        <i data-lucide="log-out"></i> Log Out
-                    </button>
+                <!-- Actual Content (hidden by default) -->
+                <div class="user-profile-content" id="userProfileContent">
+                    <div class="user-profile-section">
+                        <div class="user-avatar">
+                            <i data-lucide="user"></i>
+                        </div>
+                        <div class="user-info">
+                            <div class="user-name" id="userName"></div>
+                            <div class="user-email" id="userEmail"></div>
+                        </div>
+                    </div>
+
+                    <div class="profile-actions">
+                        <button class="btn btn-outline">
+                            <i data-lucide="edit"></i> Edit Profile
+                        </button>
+                        <button class="btn btn-outline" id="logoutBtn">
+                            <i data-lucide="log-out"></i> Log Out
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -840,13 +277,9 @@
     <!-- Load Lucide first -->
     <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js"></script>
 
-    <!-- Load our consolidated JavaScript file -->
-    <script src="app.js"></script>
-    <script>
-        window.history.scrollRestoration = "manual";
-        window.scrollTo(0, 0);
-    </script>
-    <script src="app.js"></script>
+    <!-- Load our consolidated JavaScript files -->
+    <script src="js/app.js"></script>
+    <script src="js/dashboard-settings.js"></script>
 </body>
 
 </html>
