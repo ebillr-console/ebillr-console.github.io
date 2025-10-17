@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EBilir | Changelogs</title>
+    <link href="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/common.css">
+    <link rel="stylesheet" href="assets/css/ebillr-changelogs.css">
+</head>
+
+<body>
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i data-lucide="menu"></i>
+        </button>
+        <div class="mobile-logo flex items-center">
+            <div class="logo-text text-xl font-bold">EBillr</div>
+        </div>
+        <div class="flex items-center gap-2">
+            <!-- User menu removed from top right as requested -->
+        </div>
+    </div>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="logo mb-8 flex items-center">
+            <div class="logo-text text-2xl font-bold">EBillr</div>
+        </div>
+
+        <div class="menu">
+            <div class="menu-item" onclick="window.location.href='dashboard.html'">
+                <i class="menu-icon" data-lucide="layout-dashboard"></i>
+                <span>Dashboard</span>
+            </div>
+            <div class="menu-item">
+                <i class="menu-icon" data-lucide="file-text"></i>
+                <span>Invoices</span>
+            </div>
+            <div class="menu-item">
+                <i class="menu-icon" data-lucide="bar-chart-3"></i>
+                <span>Reports</span>
+            </div>
+            <div class="menu-item">
+                <i class="menu-icon" data-lucide="cloud"></i>
+                <span>Cloud Storage</span>
+            </div>
+            <div class="menu-item" onclick="window.location.href='dashboard-settings.html'">
+                <i class="menu-icon" data-lucide="settings"></i>
+                <span>Settings</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Changelogs Header -->
+        <div class="changelogs-header">
+            <h1 class="changelogs-title">Changelogs</h1>
+            <p class="changelogs-subtitle">Latest updates and improvements to EBillr</p>
+        </div>
+
+        <!-- Developer Information Section -->
+        <div class="changelogs-section">
+            <h2 class="changelogs-section-title">Developer</h2>
+            <div class="card">
+                <div class="developer-profile">
+                    <div class="developer-avatar">
+                        <i data-lucide="user"></i>
+                    </div>
+                    <div class="developer-details">
+                        <h3 class="developer-name">Laksh Kukreja</h3>
+                        <p class="developer-role">Founder & Lead Developer</p>
+                        <div class="developer-social">
+                            <a href="https://github.com" class="social-link" target="_blank">
+                                <i data-lucide="github"></i>
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Changelog Information Section -->
+        <div class="changelogs-section">
+            <h2 class="changelogs-section-title">Changelog</h2>
+            <div id="changelogContainer">
+                <!-- Changelog content will be dynamically loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Load Lucide first -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js"></script>
+
+    <!-- Load our JavaScript files -->
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/ebillr-changelogs.js"></script>
+</body>
+
+</html>
