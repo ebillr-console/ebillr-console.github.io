@@ -1,3 +1,4 @@
+
 // Changelogs Manager - Fixed Version
 class ChangelogsManager {
     constructor() {
@@ -37,16 +38,22 @@ class ChangelogsManager {
     initializeChangelogData() {
         return [
             {
-                version: 'V1.1.100',
+                version: 'V1.7.3',
                 date: '18 October 2025',
                 variant: 'STABLE',
                 changes: [
-                    { type: 'new', text: 'Introduced New Page, "EBillr Developers" Now Available In Dashboard Settings.' },
-                    { type: 'new', text: 'Added Support For New Font Style "Zalando Sans Semi Expanded".' },
-                    { type: 'updated', text: 'Improved Functionalities & UI Experience For "EBillr Changelogs" Page.' },
-                    { type: 'updated', text: 'Changed Entire UI For Developer Card Element.' },
-                    { type: 'updated', text: 'Integrated Support For New Font Style "Jetbrains Mono" Where Required.' },
-                    { type: 'fixed', text: 'Fixed An Issue Where Changelogs Was Not Showing In The Release (V1.0.200)' },
+                    { type: 'n', text: 'Introduced New Page, "EBillr Developers" Now Available In Dashboard Settings.' },
+                    { type: 'n', text: 'Added Support For New Font Style "Zalando Sans Semi Expanded".' },
+                    { type: 'n', text: 'Skeleton Loading Animation Added For Dynamic Data Types.' },
+                    { type: 'n', text: 'Automatic Real Time Theme Switching Available Across iOS, Android, MacOS & Windows.' },
+                    { type: 'u', text: 'Improved Functionalities & UI Experience For "EBillr Changelogs" Page.' },
+                    { type: 'u', text: 'Changed Entire UI For Developer Card Element.' },
+                    { type: 'u', text: 'Integrated Support For New Font Style "Jetbrains Mono" Where Required.' },
+                    { type: 'u', text: 'Optimized Scrolling & Smoothness Experience Up To 40%' },
+                    { type: 'f', text: 'Fixed Issue Where Website Was Not Automatically Changing Themes For Some Devices In Real Time.' },
+                    { type: 'f', text: 'Fixed An Issue Where Changelogs Was Not Showing In The Release (V1.0.200)' },
+                    { type: 'f', text: 'Fixed Flash Bang Issue All Over Webpages After Website Is Reloaded.' },
+                    { type: 'f', text: 'Critical Security Bug Fixes & Patches.' },
                 ]
             },
             {
@@ -54,13 +61,15 @@ class ChangelogsManager {
                 date: '17/10/25',
                 variant: 'STABLE',
                 changes: [
-                    { type: 'new', text: 'Added advanced dark mode support with system theme detection' },
-                    { type: 'new', text: 'Implemented real-time dashboard with interactive charts' },
-                    { type: 'new', text: 'Added cloud storage integration for automatic backups' },
-                    { type: 'updated', text: 'Enhanced mobile responsiveness across all devices' },
-                    { type: 'updated', text: 'Optimized performance with 40% faster load times' },
-                    { type: 'fixed', text: 'Fixed invoice export issues with special characters' },
-                    { type: 'fixed', text: 'Resolved chart rendering problems in dark mode' }
+                    { type: 'n', text: 'Added advanced dark mode support with system theme detection' },
+                    { type: 'n', text: 'Implemented real-time dashboard with interactive charts' },
+                    { type: 'n', text: 'Added cloud storage integration for automatic backups' },
+                    { type: 'u', text: 'Enhanced mobile responsiveness across all devices' },
+                    { type: 'u', text: 'Optimized performance with 40% faster load times' },
+                    { type: 'f', text: 'Fixed invoice export issues with special characters' },
+                    { type: 'f', text: 'Resolved chart rendering problems in dark mode' },
+                    { type: 'b', text: 'Patched memory leak in data processing module' },
+                    { type: 'i', text: 'Introduced new AI-powered analytics engine' }
                 ]
             },
             {
@@ -68,12 +77,14 @@ class ChangelogsManager {
                 date: '15/09/25',
                 variant: 'BETA',
                 changes: [
-                    { type: 'new', text: 'Introduced custom invoice template builder' },
-                    { type: 'new', text: 'Added advanced reporting features' },
-                    { type: 'updated', text: 'Enhanced data export functionality' },
-                    { type: 'updated', text: 'Improved user authentication flow' },
-                    { type: 'fixed', text: 'Fixed timezone issues in reporting' },
-                    { type: 'fixed', text: 'Resolved data synchronization problems' }
+                    { type: 'n', text: 'Introduced custom invoice template builder' },
+                    { type: 'n', text: 'Added advanced reporting features' },
+                    { type: 'u', text: 'Enhanced data export functionality' },
+                    { type: 'u', text: 'Improved user authentication flow' },
+                    { type: 'f', text: 'Fixed timezone issues in reporting' },
+                    { type: 'f', text: 'Resolved data synchronization problems' },
+                    { type: 'b', text: 'Fixed database connection pooling bug' },
+                    { type: 'i', text: 'Launched new mobile-responsive design system' }
                 ]
             }
         ];
@@ -96,6 +107,8 @@ class ChangelogsManager {
     }
 
     renderVersionGroup(version) {
+        const counts = this.getChangeCounts(version.changes);
+
         return `
             <div class="version-group">
                 <div class="version-header">
@@ -103,6 +116,11 @@ class ChangelogsManager {
                     <div class="version-pills">
                         <span class="version-pill">${version.date}</span>
                         <span class="version-pill">${version.variant}</span>
+                        <span class="count-pill count-pill-new">${counts.n}</span>
+                        <span class="count-pill count-pill-updated">${counts.u}</span>
+                        <span class="count-pill count-pill-fixed">${counts.f}</span>
+                        <span class="count-pill count-pill-bug">${counts.b}</span>
+                        <span class="count-pill count-pill-introduced">${counts.i}</span>
                     </div>
                 </div>
                 <div class="changelog-items">
@@ -112,34 +130,37 @@ class ChangelogsManager {
         `;
     }
 
+    getChangeCounts(changes) {
+        const counts = { n: 0, u: 0, f: 0, b: 0, i: 0 };
+        changes.forEach(change => {
+            if (counts.hasOwnProperty(change.type)) {
+                counts[change.type]++;
+            } else {
+                console.warn(`Unknown changelog type: "${change.type}" for text: "${change.text}"`);
+            }
+        });
+        return counts;
+    }
+
     renderChangeItem(change) {
         const badgeClass = this.getBadgeClass(change.type);
-        const badgeText = this.getBadgeText(change.type);
 
         return `
             <div class="changelog-item">
-                <span class="changelog-badge ${badgeClass}">${badgeText}</span>
-                <span class="changelog-text">${change.text}</span>
+                <span class="changelog-badge ${badgeClass}">${change.text}</span>
             </div>
         `;
     }
 
     getBadgeClass(type) {
         const typeMap = {
-            'new': 'changelog-badge-new',
-            'updated': 'changelog-badge-updated',
-            'fixed': 'changelog-badge-fixed'
+            'n': 'changelog-badge-new',
+            'u': 'changelog-badge-updated',
+            'f': 'changelog-badge-fixed',
+            'b': 'changelog-badge-bug',
+            'i': 'changelog-badge-introduced'
         };
-        return typeMap[type] || 'changelog-badge-updated';
-    }
-
-    getBadgeText(type) {
-        const textMap = {
-            'new': 'NEW',
-            'updated': 'UPDATED',
-            'fixed': 'FIXED'
-        };
-        return textMap[type] || 'UPDATED';
+        return typeMap[type] || 'changelog-badge-unknown';
     }
 
     // Public methods for external use
