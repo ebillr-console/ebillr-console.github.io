@@ -19,109 +19,65 @@
     padding-left: 0;
 }
 
-.changelogs-section {
+/* Index Section */
+.index-section {
     margin-bottom: 2rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
 }
 
-.changelogs-section-title {
+.index-title {
     font-size: 1.25rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
-    /* Reduced from 1rem */
-    padding-left: 0;
-}
-
-.changelogs-section-subtitle {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
     margin-bottom: 1rem;
     padding-left: 0;
-    font-weight: 400;
+    font-family: 'JetBrains Mono', monospace;
 }
 
-/* Developer Profile - Compact Layout */
-.developer-profile {
+.index-items {
     display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 1.25rem;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
-.developer-avatar {
-    width: 80px;
-    /* Larger avatar */
-    height: 80px;
-    /* Larger avatar */
-    border-radius: 12px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    color: white;
-    position: relative;
-}
-
-.developer-avatar i {
-    width: 32px;
-    /* Larger icon */
-    height: 32px;
-    /* Larger icon */
-}
-
-.developer-details {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    /* Tight spacing */
-}
-
-.developer-name {
-    font-size: 1.25rem;
-    /* Slightly larger */
-    font-weight: 700;
-    /* Bolder */
-    color: var(--text-primary);
-    margin: 0;
-    line-height: 1.2;
-}
-
-.developer-role {
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-    margin: 0;
-    line-height: 1.3;
-}
-
-.developer-social {
-    margin-top: 0.5rem;
-}
-
-.social-link {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: var(--hover-bg);
-    color: var(--text-primary);
-    text-decoration: none;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    font-size: 0.8rem;
+.index-pill {
+    padding: 0.5rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
     font-weight: 500;
-    height: 36px;
-    /* Fixed height for vertical centering */
+    font-family: 'JetBrains Mono', monospace;
 }
 
-.social-link:hover {
-    background: var(--primary-color);
-    color: var(--bg-color);
+.index-pill-new {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.2);
 }
 
-.social-link i {
-    width: 16px;
-    height: 16px;
+.index-pill-updated {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.index-pill-fixed {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.index-pill-bug {
+    background: rgba(192, 38, 211, 0.1);
+    color: #c026d3;
+    border: 1px solid rgba(192, 38, 211, 0.2);
+}
+
+.index-pill-introduced {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+    border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
 /* Version Groups - Simple & Clean */
@@ -138,8 +94,9 @@
     background: var(--hover-bg);
     border-bottom: 1px solid var(--border-color);
     display: flex;
+    justify-content: between;
     align-items: center;
-    justify-content: space-between;
+    gap: 1rem;
 }
 
 .version-title {
@@ -148,15 +105,24 @@
     color: var(--text-primary);
     margin: 0;
     font-family: 'JetBrains Mono', monospace;
+    flex: 1;
+}
+
+.version-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
+    font-weight: 400;
 }
 
 .version-pills {
     display: flex;
     gap: 0.5rem;
+    align-items: center;
 }
 
 .version-pill {
-    padding: 0.5rem 0.875rem;
+    padding: 0.5rem 0.5rem;
     background: var(--primary-color);
     color: var(--bg-color);
     border-radius: 6px;
@@ -165,18 +131,55 @@
     font-family: 'JetBrains Mono', monospace;
 }
 
+.count-pill {
+    padding: 0.5rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    min-width: 32px;
+    text-align: center;
+}
+
+.count-pill-new {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.count-pill-updated {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.count-pill-fixed {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.count-pill-bug {
+    background: rgba(192, 38, 211, 0.1);
+    color: #c026d3;
+    border: 1px solid rgba(192, 38, 211, 0.2);
+}
+
+.count-pill-introduced {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
 /* Changelog Items - Fixed Alignment */
 .changelog-items {
     padding: 0;
 }
 
 .changelog-item {
-    display: flex;
-    align-items: center;
-    padding: 1.125rem 1.25rem;
+    padding: 0.5rem 0.5rem;
     border-bottom: 1px solid var(--border-color);
-    gap: 1rem;
-    min-height: 65px;
+    display: flex;
 }
 
 .changelog-item:last-child {
@@ -184,31 +187,15 @@
 }
 
 .changelog-badge {
-    padding: 0.5rem 0.875rem;
+    padding: 0.5rem 0.75rem;
     border-radius: 6px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-family: 'JetBrains Mono', monospace;
-    min-width: 85px;
-    text-align: center;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 32px;
-}
-
-.changelog-text {
-    font-size: 1.05rem;
-    color: var(--text-primary);
-    line-height: 1.5;
-    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
     font-weight: 400;
-    flex: 1;
-    margin: 0;
-    padding: 0;
+    line-height: 1.4;
+    font-family: 'Zalando Sans SemiExpanded';
+    display: block;
+    width: 100%;
+    text-align: left;
 }
 
 /* Badge Colors */
@@ -230,35 +217,41 @@
     border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
+.changelog-badge-bug {
+    background: rgba(192, 38, 211, 0.1);
+    color: #c026d3;
+    border: 1px solid rgba(192, 38, 211, 0.2);
+}
+
+.changelog-badge-introduced {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.changelog-badge-unknown {
+    background: rgba(156, 163, 175, 0.1);
+    color: #9ca3af;
+    border: 1px solid rgba(156, 163, 175, 0.2);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .changelogs-title {
         font-size: 1.75rem;
     }
 
-    .changelogs-section-title {
-        font-size: 1.125rem;
+    .index-section {
+        padding: 1rem;
     }
 
-    .developer-profile {
-        flex-direction: column;
-        text-align: center;
-        padding: 1.5rem;
-        gap: 1rem;
+    .index-items {
+        gap: 0.75rem;
     }
 
-    .developer-avatar {
-        width: 70px;
-        height: 70px;
-    }
-
-    .developer-avatar i {
-        width: 28px;
-        height: 28px;
-    }
-
-    .developer-social {
-        margin-top: 0.75rem;
+    .index-pill {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.4rem;
     }
 
     .version-header {
@@ -270,6 +263,7 @@
     .version-pills {
         width: 100%;
         justify-content: flex-start;
+        flex-wrap: wrap;
     }
 
     .version-title {
@@ -277,19 +271,25 @@
     }
 
     .changelog-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.75rem;
-        padding: 1rem;
-        min-height: auto;
+        padding: 0.5rem 0.5rem;
+        display: block;
     }
 
     .changelog-badge {
-        align-self: flex-start;
-        height: auto;
+        font-size: 0.9rem;
+        padding: 0.5rem 0.75rem;
+        display: block;
+        width: 100%;
     }
 
-    .changelog-text {
-        font-size: 1rem;
+    .count-pill {
+        min-width: 28px;
+        padding: 0.4rem 0.4rem;
+        font-size: 0.75rem;
+    }
+
+    .version-pill {
+        padding: 0.4rem 0.4rem;
+        font-size: 0.75rem;
     }
 }
