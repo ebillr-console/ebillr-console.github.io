@@ -3,6 +3,7 @@
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 1.5rem;
     margin-bottom: 2rem;
+    font-family: 'Zalando Sans SemiExpanded';
 }
 
 .changelogs-title {
@@ -10,6 +11,7 @@
     font-weight: 700;
     margin-bottom: 0.25rem;
     padding-left: 0;
+    font-family: 'Zalando Sans SemiExpanded';
 }
 
 .changelogs-subtitle {
@@ -17,6 +19,7 @@
     color: var(--text-secondary);
     font-weight: 400;
     padding-left: 0;
+    font-family: 'Zalando Sans SemiExpanded';
 }
 
 /* Index Section */
@@ -33,7 +36,7 @@
     font-weight: 600;
     margin-bottom: 1rem;
     padding-left: 0;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Zalando Sans SemiExpanded';
 }
 
 .index-items {
@@ -47,7 +50,7 @@
     border-radius: 6px;
     font-size: 0.9rem;
     font-weight: 500;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Zalando Sans SemiExpanded';
 }
 
 .index-pill-new {
