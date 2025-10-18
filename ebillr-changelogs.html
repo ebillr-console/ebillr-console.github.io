@@ -4,11 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EBilir | Changelogs</title>
+    <title>EBillr | Changelogs</title>
     <link href="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap"
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=BBH+Sans+Bartle&family=BBH+Sans+Bogle&family=BBH+Sans+Hegarty&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Lexend:wght@100..900&family=Outfit:wght@100..900&family=Zalando+Sans+SemiExpanded:ital,wght@0,200..900;1,200..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="assets/css/common.css">
     <link rel="stylesheet" href="assets/css/ebillr-changelogs.css">
@@ -69,13 +71,21 @@
             <p class="changelogs-subtitle">Latest updates and improvements to EBillr</p>
         </div>
 
-
-        <!-- Changelog Information Section -->
-        <div class="changelogs-section">
-            <h2 class="changelogs-section-title">Changelog</h2>
-            <div id="changelogContainer">
-                <!-- Changelog content will be dynamically loaded here -->
+        <!-- Index Section -->
+        <div class="index-section">
+            <h2 class="index-title">Index</h2>
+            <div class="index-items">
+                <span class="index-pill index-pill-new">New Feature</span>
+                <span class="index-pill index-pill-updated">Updated Feature</span>
+                <span class="index-pill index-pill-fixed">Fixed Issue</span>
+                <span class="index-pill index-pill-bug">Acknowledged Bug</span>
+                <span class="index-pill index-pill-introduced">Coming Soon</span>
             </div>
+        </div>
+
+        <!-- Changelog Versions -->
+        <div id="changelogContainer">
+            <!-- Changelog content will be dynamically loaded here -->
         </div>
     </div>
 
