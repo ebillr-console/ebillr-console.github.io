@@ -1,0 +1,298 @@
+/* Changelogs Specific Styles - Clean & Minimal */
+.changelogs-header {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    font-family: 'Zalando Sans SemiExpanded';
+}
+
+.changelogs-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    padding-left: 0;
+    font-family: 'Zalando Sans SemiExpanded';
+}
+
+.changelogs-subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    padding-left: 0;
+    font-family: 'Zalando Sans SemiExpanded';
+}
+
+/* Index Section */
+.index-section {
+    margin-bottom: 2rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.index-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-left: 0;
+    font-family: 'Zalando Sans SemiExpanded';
+}
+
+.index-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.index-pill {
+    padding: 0.5rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: 'Zalando Sans SemiExpanded';
+}
+
+.index-pill-new {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.index-pill-updated {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.index-pill-fixed {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.index-pill-bug {
+    background: rgba(192, 38, 211, 0.1);
+    color: #c026d3;
+    border: 1px solid rgba(192, 38, 211, 0.2);
+}
+
+.index-pill-introduced {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+/* Version Groups - Simple & Clean */
+.version-group {
+    margin-bottom: 2rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.version-header {
+    padding: 1.25rem;
+    background: var(--hover-bg);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.version-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    font-family: 'JetBrains Mono', monospace;
+    flex: 1;
+}
+
+.version-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
+    font-weight: 400;
+}
+
+.version-pills {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.version-pill {
+    padding: 0.5rem 0.5rem;
+    background: var(--primary-color);
+    color: var(--bg-color);
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.count-pill {
+    padding: 0.5rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    min-width: 32px;
+    text-align: center;
+}
+
+.count-pill-new {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.count-pill-updated {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.count-pill-fixed {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.count-pill-bug {
+    background: rgba(192, 38, 211, 0.1);
+    color: #c026d3;
+    border: 1px solid rgba(192, 38, 211, 0.2);
+}
+
+.count-pill-introduced {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+/* Changelog Items - Fixed Alignment */
+.changelog-items {
+    padding: 0;
+}
+
+.changelog-item {
+    padding: 0.5rem 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+}
+
+.changelog-item:last-child {
+    border-bottom: none;
+}
+
+.changelog-badge {
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.4;
+    font-family: 'Zalando Sans SemiExpanded';
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+/* Badge Colors */
+.changelog-badge-new {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.changelog-badge-updated {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.changelog-badge-fixed {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.changelog-badge-bug {
+    background: rgba(192, 38, 211, 0.1);
+    color: #c026d3;
+    border: 1px solid rgba(192, 38, 211, 0.2);
+}
+
+.changelog-badge-introduced {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.changelog-badge-unknown {
+    background: rgba(156, 163, 175, 0.1);
+    color: #9ca3af;
+    border: 1px solid rgba(156, 163, 175, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .changelogs-title {
+        font-size: 1.75rem;
+    }
+
+    .index-section {
+        padding: 1rem;
+    }
+
+    .index-items {
+        gap: 0.75rem;
+    }
+
+    .index-pill {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.4rem;
+    }
+
+    .version-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .version-pills {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .version-title {
+        font-size: 1.25rem;
+    }
+
+    .changelog-item {
+        padding: 0.5rem 0.5rem;
+        display: block;
+    }
+
+    .changelog-badge {
+        font-size: 0.9rem;
+        padding: 0.5rem 0.75rem;
+        display: block;
+        width: 100%;
+    }
+
+    .count-pill {
+        min-width: 28px;
+        padding: 0.4rem 0.4rem;
+        font-size: 0.75rem;
+    }
+
+    .version-pill {
+        padding: 0.4rem 0.4rem;
+        font-size: 0.75rem;
+    }
+}

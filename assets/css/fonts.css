@@ -1,0 +1,25 @@
+/* Zalando Sans Fonts */
+@font-face {
+    font-family: 'Zalando Sans SemiExpanded';
+    src: url('./assets/fonts/ZalandoSans-Semi-Expanded/ZalandoSans-SemiExpanded-Variable.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Fallback fonts */
+@font-face {
+    font-family: 'Zalando Sans';
+    src: url('./assets/fonts/ZalandoSans/ZalandoSans-Variable.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Zalando Sans Expanded';
+    src: url('./assets/fonts/ZalandoSans-Expanded/ZalandoSans-Expanded-Variable.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}

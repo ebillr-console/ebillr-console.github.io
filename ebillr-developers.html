@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EBillr | Developers</title>
+    <link href="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=BBH+Sans+Bartle&family=BBH+Sans+Bogle&family=BBH+Sans+Hegarty&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Lexend:wght@100..900&family=Outfit:wght@100..900&family=Zalando+Sans+SemiExpanded:ital,wght@0,200..900;1,200..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/common.css">
+    <link rel="stylesheet" href="assets/css/ebillr-developers.css">
+</head>
+
+<body>
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i data-lucide="menu"></i>
+        </button>
+        <div class="mobile-logo flex items-center">
+            <div class="logo-text text-xl font-bold">EBillr</div>
+        </div>
+        <div class="flex items-center gap-2">
+            <!-- User menu removed from top right as requested -->
+        </div>
+    </div>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="logo mb-8 flex items-center">
+            <div class="logo-text text-2xl font-bold">EBillr</div>
+        </div>
+
+        <div class="menu">
+            <div class="menu-item" onclick="window.location.href='dashboard.html'">
+                <i class="menu-icon" data-lucide="layout-dashboard"></i>
+                <span>Dashboard</span>
+            </div>
+            <div class="menu-item">
+                <i class="menu-icon" data-lucide="file-text"></i>
+                <span>Invoices</span>
+            </div>
+            <div class="menu-item">
+                <i class="menu-icon" data-lucide="bar-chart-3"></i>
+                <span>Reports</span>
+            </div>
+            <div class="menu-item">
+                <i class="menu-icon" data-lucide="cloud"></i>
+                <span>Cloud Storage</span>
+            </div>
+            <div class="menu-item" onclick="window.location.href='dashboard-settings.html'">
+                <i class="menu-icon" data-lucide="settings"></i>
+                <span>Settings</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">EBillr Developers</h1>
+            <p class="page-subtitle">Heros Of This Project</p>
+        </div>
+
+        <!-- Developer Information Section -->
+        <div class="developer-group">
+            <div class="developer-header">
+                <h3 class="developer-title">More About Me</h3>
+            </div>
+            <div class="changelog-items">
+                <div class="developer-profile">
+                    <div class="developer-avatar">
+                        <img src="https://github.com/lakshkukreja07.png" alt="Laksh Kukreja" class="github-avatar">
+                    </div>
+                    <div class="developer-details">
+                        <h3 class="developer-name">Laksh Kukreja</h3>
+                        <div class="developer-role">Project Lead Developer & Founder</div>
+                    </div>
+                    <div class="developer-actions">
+                        <a href="https://github.com/lakshkukreja07" class="developer-social-link" target="_blank">
+                            <i data-lucide="github"></i>
+                            <span>GitHub</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load Lucide first -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js"></script>
+
+    <!-- Load our JavaScript files -->
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/ebillr-developers.js"></script>
+</body>
+
+</html>
